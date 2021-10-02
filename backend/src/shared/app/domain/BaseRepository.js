@@ -51,7 +51,6 @@ class BaseRepository {
           ...parameters,
         },
       });
-
       if (!entity) return null;
       return new this.entityToMap(entity.toJSON());
     } catch (error) {

@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
-      deslikes: {
+      dislikes: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },

@@ -4,7 +4,7 @@ class Post {
     name,
     content,
     likes,
-    deslikes,
+    dislikes,
     userEmail,
     createdAt
   }) {
@@ -12,7 +12,7 @@ class Post {
     this.name = name;
     this.content = content;
     this.likes = likes;
-    this.deslikes = deslikes;
+    this.dislikes = dislikes;
     this.userEmail = userEmail;
     this.createdAt = createdAt;
   }

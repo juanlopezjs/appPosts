@@ -9,7 +9,7 @@ class Documentation {
         openapi: "3.0.0",
         info: {
           version: "1.0.0",
-          title: "API Rest for post application",
+          title: "API Rest for posts application",
           description: "",
           license: {
             name: "MIT",

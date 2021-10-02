@@ -32,9 +32,10 @@ class Router {
         next(error);
       });
 
-      router.use((err, req, res) =>
+      router.use((err, req, res, next) =>{
         errorHandler(err, res, this._logger, this.Fail)
-      );
+        next(err);
+      });
 
       this._server.setRouter(router);
     } catch (error) {

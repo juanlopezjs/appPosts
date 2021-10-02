@@ -98,7 +98,7 @@ module.exports = ({
    *              properties:
    *                likes:
    *                  type: integer
-   *                deslikes:
+   *                dislikes:
    *                  type: integer
    *     responses:
    *       200:
