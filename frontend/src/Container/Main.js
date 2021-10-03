@@ -7,6 +7,7 @@ import Posts from "./Post";
 import Footer from "../Component/Footer";
 import Login from "../Component/Login";
 import AuthRoute from "../Component/AuthRoute";
+import PostDetails from "../Component/PostDetails";
 
 const Main = () => {
   return (
@@ -18,6 +19,9 @@ const Main = () => {
         <Switch>
           <AuthRoute exact path="/">
             <Posts />
+          </AuthRoute>
+          <AuthRoute exact path="/post/:id">
+            <PostDetails />
           </AuthRoute>
           <Route exact path="/login">
             <Login />

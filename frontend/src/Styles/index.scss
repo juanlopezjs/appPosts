@@ -16,4 +16,15 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 footer{
   min-height: 5vh;
 }
-  
+
+.action-btn-wrapper {
+  position: relative;
+}
+
+.fixed-action-btn.my-custom-btn {
+    position: absolute;
+    right: 0px;
+    top: 23px;
+    padding-top: 15px;
+    margin-bottom: 0;
+}

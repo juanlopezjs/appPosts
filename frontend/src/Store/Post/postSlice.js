@@ -68,7 +68,6 @@ export const fetchAction = (postId, isLiked, userEmail) => (dispatch) => {
             data
         }) => {
             const post = data.data;
-            console.log(post, "post")
             dispatch(setPost(post))
             dispatch(setIsFetching(false));
         })

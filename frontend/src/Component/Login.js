@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(()=> {
     if(window.localStorage.getItem("userEmail") !== null){
-        setNewEmailUser(window.localStorage.getItem("userEmail"))
+        setNewEmailUser(window.localStorage.getItem("userEmail"));
     }
   }, [])
 

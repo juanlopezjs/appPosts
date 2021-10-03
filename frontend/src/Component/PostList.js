@@ -1,27 +1,21 @@
 import React from "react";
 import Card from "./Card";
 
-const PostList = ({ posts, lastElementRef }) => (
+const PostList = ({ posts }) => (
   <>
-    {posts.map((post, index) => {
-      return (
-        <div key={index} className="row justify-content-center">
-          <div className="col-md-6 mb-3">
-            <Card
-              key={index}
-              id={post.id}
-              title={post.name}
-              content={post.content}
-              likes={post.likes}
-              dislikes={post.dislikes}
-              userEmail={post.userEmail}
-              numberComments={post.Comments.length}
-              created={post.createdAt}
-            />
-          </div>
-        </div>
-      );
-    })}
+    {posts.map((post, index) => (
+      <Card
+        key={index}
+        id={post.id}
+        title={post.name}
+        content={post.content}
+        likes={post.likes}
+        dislikes={post.dislikes}
+        userEmail={post.userEmail}
+        numberComments={post.Comments.length}
+        created={post.createdAt}
+      />
+    ))}
   </>
 );
 
