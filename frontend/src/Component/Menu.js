@@ -10,6 +10,7 @@ const Menu = () => (
         role="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        to="#"
       >
         Menu{" "}
       </Link>
@@ -23,12 +24,12 @@ const Menu = () => (
           </Link>
         </li>
         <li>
-          <Link className="dropdown-item" href="/messages">
+          <Link className="dropdown-item" to="/messages">
             Mensajes
           </Link>
         </li>
         <li>
-          <Link className="dropdown-item" href="/groups">
+          <Link className="dropdown-item" to="/groups">
             Grupos
           </Link>
         </li>

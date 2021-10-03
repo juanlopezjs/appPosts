@@ -1,27 +1,30 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 //Components
 import Navbar from "../Component/Navbar";
-//import Counter from "../Component/Counter";
 import Posts from "./Post";
 import Footer from "../Component/Footer";
+import Login from "../Component/Login";
+import AuthRoute from "../Component/AuthRoute";
 
 const Main = () => {
   return (
-    <BrowserRouter basename={window.location.pathname}>
+    <BrowserRouter basename={"/"}>
       <header className="mb-5">
         <Navbar />
       </header>
-
-      <Switch>
-        <Route exact path="/">
-          <Posts />
-        </Route>
-        {/* <Route exact path="/">
-          <Counter />
-        </Route> */}
-      </Switch>
+      <div className="container p-5">
+        <Switch>
+          <AuthRoute exact path="/">
+            <Posts />
+          </AuthRoute>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Redirect to="/login" />
+        </Switch>
+      </div>
       <Footer />
     </BrowserRouter>
   );
