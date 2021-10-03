@@ -9,6 +9,7 @@ const PostList = ({ posts, lastElementRef }) => (
           <div className="col-md-6 mb-3">
             <Card
               key={index}
+              id={post.id}
               title={post.name}
               content={post.content}
               likes={post.likes}

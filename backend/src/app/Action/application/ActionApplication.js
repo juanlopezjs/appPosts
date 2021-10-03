@@ -17,12 +17,12 @@ class ActionApplication extends BaseApplication {
       } = record;
 
       let recordPost = await this._PostApplication.get(PostId);
-      const recordAction = await this.getWithParameters({
+      let recordAction = await this.getWithParameters({
         PostId,
         userEmail
       });
 
-      if(recordPost === null){
+      if (recordPost === null) {
         throw "The post not exist";
       }
 
@@ -36,15 +36,20 @@ class ActionApplication extends BaseApplication {
             recordPost.dislikes--;
             recordPost.likes++;
           }
-        }
 
-        await this.update(recordAction.id, record);
-        await this._PostApplication.update(PostId, recordPost);
+          await this.update(recordAction.id, {
+            isLiked
+          });
+        } else {
+          isLiked ? recordPost.likes-- : recordPost.dislikes--;
+          await this.delete(recordAction.id)
+        }
       } else {
         isLiked ? recordPost.likes++ : recordPost.dislikes++;
-        await this._PostApplication.update(PostId, recordPost);
-        return await this.create(record);
+        await this.create(record);
       }
+
+      return await this._PostApplication.update(PostId, recordPost);
     } catch (error) {
       throw new Error(error);
     }

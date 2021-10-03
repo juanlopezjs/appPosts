@@ -7,7 +7,7 @@ import { setEmailUser, selectEmailUser } from "../Store/User/userSlice";
 const Login = () => {
   const dispatch = useDispatch();
   const emailUser = useSelector(selectEmailUser);
-  let history = useHistory();
+  const history = useHistory();
 
   const {
     register,

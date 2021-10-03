@@ -51,12 +51,12 @@ module.exports = ({ server, ActionController }) => {
    *              type: object
    *              required:
    *                - PostId
-   *                - isLike
+   *                - isLiked
    *                - userEmail
    *              properties:
    *                PostId:
    *                  type: integer
-   *                isLike:
+   *                isLiked:
    *                  type: boolean
    *                userEmail:
    *                  type: string

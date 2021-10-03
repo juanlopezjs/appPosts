@@ -29,6 +29,11 @@ const Posts = () => {
         next={loadPosts}
         hasMore={true}
         style={{ overflowX: "hidden" }}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
       >
         <PostList posts={posts} />
       </InfiniteScroll>

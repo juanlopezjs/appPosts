@@ -1,4 +1,9 @@
+import { useSelector, useDispatch } from "react-redux";
+import { selectEmailUser } from "../Store/User/userSlice";
+import { fetchAction } from "../Store/Post/postSlice";
+
 const Card = ({
+  id,
   userEmail,
   title,
   content,
@@ -15,6 +20,13 @@ const Card = ({
     hour: "2-digit",
     minute: "numeric",
   }).format(date);
+
+  const emailUser = useSelector(selectEmailUser);
+  const dispatch = useDispatch();
+
+  const handleLike = (isLiked) => dispatch(fetchAction(id,isLiked, emailUser));
+  
+  const handleComment = () => console.log("hola", id)
 
   return (
     <div className="card">
@@ -57,17 +69,17 @@ const Card = ({
       <div className="card-footer">
         <div className="d-flex justify-content-evenly">
           <div className="p-2">
-            <button className="btn">
+            <button className="btn" title="Me gusta" onClick={()=> handleLike(true)}>
               <i className="bi bi-hand-thumbs-up fs-5"></i>
             </button>
           </div>
           <div className="p-2">
-            <button className="btn">
+            <button className="btn" title="No me gusta" onClick={()=> handleLike(false)}>
               <i className="bi bi-hand-thumbs-down fs-5"></i>
             </button>
           </div>
           <div className="p-2">
-            <button className="btn">
+            <button className="btn" title="Comentar" onClick={handleComment}>
               <i className="bi bi-chat fs-5"></i>
             </button>
           </div>
