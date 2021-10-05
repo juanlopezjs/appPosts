@@ -14,10 +14,14 @@ const CreateComment = () => {
   const dispatch = useDispatch();
   const emailUser = useSelector(selectEmailUser);
   const history = useHistory();
-  const { state : {postId} } = useLocation();
+  const {
+    state: { postId },
+  } = useLocation();
 
   const onSubmit = ({ nameComment, contentComment }) => {
-    dispatch(fetchCreateComment(postId, nameComment, contentComment, emailUser));
+    dispatch(
+      fetchCreateComment(postId, nameComment, contentComment, emailUser)
+    );
     history.push("/");
   };
 
