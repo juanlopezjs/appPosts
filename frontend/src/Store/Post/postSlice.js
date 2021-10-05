@@ -3,7 +3,9 @@ import {
 } from '@reduxjs/toolkit';
 import {
     executeFetchGetPosts,
-    executeFetchPostAction
+    executeFetchPostAction,
+    executeFetchCreatePost,
+    executeFetchCreateComment
 } from "./postAPI";
 
 export const postSlice = createSlice({
@@ -11,11 +13,20 @@ export const postSlice = createSlice({
     initialState: {
         list: [],
         page: 0,
+        newPage: null,
         isFetching: false
     },
     reducers: {
+        setNewPage: (state, action) => {
+            state.newPage = action.payload
+        },
+        resetList: (state) => {
+            state.page = 0;
+            state.list = [];
+        },
         setPostList: (state, action) => {
-            state.list = state.list.concat(action.payload);
+            const posts =  state.list.concat(action.payload);
+            state.list = posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         },
         setIsFetching: (state, action) => {
             state.isFetching = action.payload;
@@ -23,12 +34,24 @@ export const postSlice = createSlice({
         setPage: (state) => {
             state.page += 1;
         },
-        setPost: (state, action) => {
+        updatePost: (state, action) => {
             const index = state.list.findIndex(post => post.id === action.payload.id);
             const newState = [...state.list];
+            
             newState[index] = {
                 ...state.list[index],
                 ...action.payload
+            };
+            state.list= newState;
+        },
+        addComment: (state, action) => {
+            const index = state.list.findIndex(post => post.id === action.payload.PostId);
+            const newState = [...state.list];
+            const comments = state.list[index].Comments;
+            comments.push(action.payload)
+            newState[index] = {
+                ...state.list[index],
+                Comments: comments
             };
             state.list= newState;
         }
@@ -39,7 +62,10 @@ export const {
     setPostList,
     setPage,
     setIsFetching,
-    setPost
+    updatePost,
+    resetList,
+    setNewPage,
+    addComment
 } = postSlice.actions;
 
 export default postSlice.reducer;
@@ -53,7 +79,7 @@ export const fetchPosts = (page) => (dispatch) => {
             const posts = data.data.items;
             setTimeout(() => {
                 dispatch(setPostList(posts));
-                dispatch(setPage());
+               //dispatch(setPage());
                 dispatch(setIsFetching(false));
             }, 1000);
         })
@@ -68,9 +94,36 @@ export const fetchAction = (postId, isLiked, userEmail) => (dispatch) => {
             data
         }) => {
             const post = data.data;
-            dispatch(setPost(post))
+            dispatch(updatePost(post))
             dispatch(setIsFetching(false));
         })
         .catch((error) => console.error(error));
-}
+};
+
+export const fetchCreatePost = (name, content, userEmail) => (dispatch) =>{
+    dispatch(setIsFetching(true));
+    executeFetchCreatePost(name, content, userEmail)
+        .then(({
+            data
+        }) => {
+            const post = data.data;
+            dispatch(setPostList(post))
+            dispatch(setIsFetching(false));
+        })
+        .catch((error) => console.error(error));
+};
+
+export const fetchCreateComment = (PostId, name, content, userEmail) => (dispatch) => {
+    
+    executeFetchCreateComment(PostId, name, content, userEmail)
+        .then(({
+            data
+        }) => {
+            const comment = data.data;
+            dispatch(addComment(comment))
+            dispatch(setIsFetching(false));
+        })
+        .catch((error) => console.error(error));
+};
+
 export const selectPostList = (state) => state.post.list;

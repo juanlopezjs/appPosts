@@ -7,26 +7,33 @@ import PostList from "../../Component/PostList";
 import Loading from "../../Component/Loading";
 
 //redux
-import { fetchPosts, selectPostList } from "../../Store/Post/postSlice";
+import { fetchPosts, selectPostList, setPage, setNewPage } from "../../Store/Post/postSlice";
 
 const Posts = () => {
   const dispatch = useDispatch();
   const posts = useSelector(selectPostList);
-  const { isFetching, page } = useSelector((state) => state.post);
+  const { isFetching, page, newPage } = useSelector((state) => state.post);
 
   const loadPosts = () => {
     dispatch(fetchPosts(page));
+    dispatch(setNewPage(page));
   };
 
+  const handlerNextPosts = () => {
+    dispatch(setPage());
+  }
+
   useEffect(() => {
-    loadPosts();
-  }, []);
+    if(newPage !== page){
+      loadPosts();
+    }
+  }, [newPage, page]);
 
   return (
     <div className="row mb-4 justify-content-center">
       <InfiniteScroll
         dataLength={posts.length}
-        next={loadPosts}
+        next={handlerNextPosts}
         hasMore={true}
         style={{ overflowX: "hidden" }}
         endMessage={

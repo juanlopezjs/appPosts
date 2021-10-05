@@ -15,5 +15,22 @@ export const executeFetchPostAction = (postId, isLiked, userEmail) => {
         "PostId": postId,
         isLiked,
         userEmail
-    })
+    });
+};
+
+export const executeFetchCreatePost = (name, content, userEmail) => {
+    return axios.post(`${REACT_APP_API_URL}post`,{
+        name,
+        content,
+        userEmail
+    });
+};
+
+export const executeFetchCreateComment = (PostId, name, content, userEmail) => {
+    return axios.post(`${REACT_APP_API_URL}comment`,{
+        PostId,
+        name,
+        content,
+        userEmail
+    });
 };

@@ -1,7 +1,8 @@
 //Components
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setEmailUser,  } from "../Store/User/userSlice";
+import { setEmailUser  } from "../Store/User/userSlice";
+import { resetList } from "../Store/Post/postSlice";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,8 @@ const Menu = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("userEmail");
-    dispatch(setEmailUser(""))
+    dispatch(setEmailUser(""));
+    dispatch(resetList());
     history.push("/");
   }
 

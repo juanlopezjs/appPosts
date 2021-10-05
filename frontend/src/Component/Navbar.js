@@ -38,7 +38,7 @@ const Navbar = () => {
               id="navbarNavDarkDropdown"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-              <Link to="/create" className="btn btn-light me-3">
+              <Link to="/create/post" className="btn btn-light me-3">
                 Publicar post
               </Link>
               <Menu />

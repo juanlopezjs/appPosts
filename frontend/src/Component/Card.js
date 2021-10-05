@@ -2,37 +2,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectEmailUser } from "../Store/User/userSlice";
 import { fetchAction } from "../Store/Post/postSlice";
-
+import {formatDateToString} from "../Utils/index";
 const Card = ({
   id,
   userEmail,
-  title,
+  name,
   content,
   likes,
   dislikes,
-  numberComments,
-  created
+  Comments,
+  createdAt,
 }) => {
-  const date = new Date(created);
-  const year = new Intl.DateTimeFormat("sp", { year: "numeric" }).format(date);
-  const month = new Intl.DateTimeFormat("sp", { month: "short" }).format(date);
-  const day = new Intl.DateTimeFormat("sp", { day: "2-digit" }).format(date);
-  const hour = new Intl.DateTimeFormat("sp", {
-    hour: "2-digit",
-    minute: "numeric",
-  }).format(date);
-
   const emailUser = useSelector(selectEmailUser);
   const dispatch = useDispatch();
 
   const handleLike = (isLiked) => dispatch(fetchAction(id, isLiked, emailUser));
 
-  const handleComment = () => console.log("hola", id);
-
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-6 mb-3">
-        <div className="card">
+    
+        <div className="card shadow-sm bg-body rounded">
           <div className="card-header">
             <div className="d-flex flex-row align-items-center">
               <div className="p-2">
@@ -50,7 +38,7 @@ const Card = ({
                 </p>
                 <span>
                   <small>
-                    {`${hour} ${day} ${month} ${year}`.toLowerCase()}
+                    {formatDateToString(createdAt)}
                   </small>
                 </span>
               </div>
@@ -65,17 +53,17 @@ const Card = ({
                   state: {
                     id,
                     userEmail,
-                    title,
+                    name,
                     content,
                     likes,
                     dislikes,
-                    numberComments,
-                    created
-                  }
+                    Comments,
+                    createdAt,
+                  },
                 }}
                 title="Ver detalle"
               >
-                {title}
+                {name}
               </Link>
             </h5>
             <p className="card-text">{content}</p>
@@ -88,7 +76,7 @@ const Card = ({
               <span className="fw-bold">{dislikes}</span> No me gusta
             </span>
             <span className="card-link text-muted">
-              <span className="fw-bold">{numberComments}</span> Comentarios
+              <span className="fw-bold">{Comments?.length}</span> Comentarios
             </span>
           </div>
           <div className="card-footer">
@@ -112,19 +100,22 @@ const Card = ({
                 </button>
               </div>
               <div className="p-2">
-                <button
+                <Link
                   className="btn"
-                  title="Comentar"
-                  onClick={handleComment}
+                  title="Agregar comentario"
+                  to={{
+                    pathname: "/create/comment",
+                    state: {
+                      postId: id,
+                    },
+                  }}
                 >
                   <i className="bi bi-chat fs-5"></i>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 
