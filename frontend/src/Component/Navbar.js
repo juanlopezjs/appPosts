@@ -1,8 +1,9 @@
-//Components
 import React from "react";
-import Menu from "./Menu";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+
+// Components
+import Menu from "./Menu";
 
 import { selectEmailUser } from "../Store/User/userSlice";
 
@@ -31,13 +32,13 @@ const Navbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon" />
             </button>
             <div
               className="collapse navbar-collapse"
               id="navbarNavDarkDropdown"
             >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0" />
               <Link to="/create/post" className="btn btn-light me-3">
                 Publicar post
               </Link>

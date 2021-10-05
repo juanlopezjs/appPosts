@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
@@ -9,13 +10,13 @@ const CreateComment = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
   const dispatch = useDispatch();
   const emailUser = useSelector(selectEmailUser);
   const history = useHistory();
   const {
-    state: { postId },
+    state: { postId }
   } = useLocation();
 
   const onSubmit = ({ nameComment, contentComment }) => {

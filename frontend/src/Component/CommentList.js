@@ -1,19 +1,19 @@
 import React from "react";
-import { formatDateToString } from "../Utils/index";
+import PropTypes from "prop-types";
+import formatDateToString from "../Utils/index";
 
-//Components
+// Components
 import Avatar from "./Avatar";
-/**
- *
- */
+
 const CommentList = ({ comments }) => {
   const commentList = [...comments];
   return (
     <>
       {commentList
         .sort((a, b) => a.id - b.id)
-        .map((comment, key) => (
-          <div key={key} className="card shadow-sm bg-body mb-3">
+        .map((comment, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index} className="card shadow-sm bg-body mb-3">
             <div className="row g-0">
               <div className="col-md-2 d-flex align-self-center justify-content-center">
                 <Avatar userEmail={comment.userEmail} />
@@ -36,8 +36,20 @@ const CommentList = ({ comments }) => {
   );
 };
 
+CommentList.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      content: PropTypes.string,
+      userEmail: PropTypes.string,
+      createdAt: PropTypes.string
+    })
+  )
+};
+
 CommentList.defaultProps = {
-  comments: [],
+  comments: []
 };
 
 export default CommentList;

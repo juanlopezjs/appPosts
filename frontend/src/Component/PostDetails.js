@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import { useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Card from "./Card";
 import { selectPostList } from "../Store/Post/postSlice";
-//Components
+// Components
 import CommentList from "./CommentList";
 
 const PostDetails = () => {
@@ -12,10 +12,10 @@ const PostDetails = () => {
   const posts = useSelector(selectPostList);
   const [post, setPost] = useState(state);
 
-  useEffect(()=> {
-    const filterPost = posts.find(item => item.id === post.id);
-    setPost(filterPost)
-  },[posts, post])
+  useEffect(() => {
+    const filterPost = posts.find((item) => item.id === post.id);
+    setPost(filterPost);
+  }, [posts, post]);
 
   const handleToBack = () => history.goBack();
   return (
@@ -29,7 +29,7 @@ const PostDetails = () => {
                 className="navbar-brand btn"
                 onClick={handleToBack}
               >
-                <i className="bi bi-arrow-left-circle fs-4"></i>
+                <i className="bi bi-arrow-left-circle fs-4" />
               </button>
             </div>
           </nav>
@@ -37,7 +37,16 @@ const PostDetails = () => {
       </div>
       <div className="row justify-content-center">
         <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 col-xxl-7 mb-2">
-          <Card {...post} />
+          <Card
+            id={post.id}
+            name={post.name}
+            content={post.content}
+            likes={post.likes}
+            dislikes={post.dislikes}
+            userEmail={post.userEmail}
+            Comments={post?.Comments}
+            createdAt={post.createdAt}
+          />
         </div>
       </div>
       <div className="row justify-content-center">

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -9,7 +10,7 @@ const CreatePost = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
   const dispatch = useDispatch();
   const emailUser = useSelector(selectEmailUser);

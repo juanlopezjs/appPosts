@@ -1,7 +1,7 @@
-//Components
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setEmailUser  } from "../Store/User/userSlice";
+import { setEmailUser } from "../Store/User/userSlice";
 import { setPage, setNewPage } from "../Store/Post/postSlice";
 
 const Menu = () => {
@@ -14,7 +14,7 @@ const Menu = () => {
     dispatch(setPage(0));
     dispatch(setNewPage(null));
     history.push("/");
-  }
+  };
 
   return (
     <ul className="navbar-nav">
@@ -25,7 +25,7 @@ const Menu = () => {
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          to="#"
+          to="/"
         >
           Menu{" "}
         </Link>
@@ -56,7 +56,7 @@ const Menu = () => {
         </ul>
       </li>
     </ul>
-  )
+  );
 };
 
 export default Menu;

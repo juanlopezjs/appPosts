@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,22 +12,27 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
+
+  const setNewEmailUser = useCallback(
+    (userEmail) => {
+      dispatch(setEmailUser(userEmail));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (window.localStorage.getItem("userEmail") !== null) {
       setNewEmailUser(window.localStorage.getItem("userEmail"));
     }
-  }, []);
+  }, [setNewEmailUser]);
 
   useEffect(() => {
     if (emailUser !== "") {
       history.push("/");
     }
   }, [emailUser, history]);
-
-  const setNewEmailUser = (userEmail) => dispatch(setEmailUser(userEmail));
 
   const onSubmit = ({ userEmail }) => setNewEmailUser(userEmail);
 
@@ -49,6 +54,7 @@ const Login = () => {
                     className={`form-control ${
                       errors.userEmail ? "is-invalid" : ""
                     }`}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
                     {...register("userEmail", { required: true })}
                   />
                   {errors.userEmail && (
