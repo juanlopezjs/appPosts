@@ -1,38 +1,7 @@
-module.exports = ({ server, ActionController }) => {
-  const app = server.router();
+const { Router } = require("express");
 
-  /**
-   * @openapi
-   * /Action/:
-   *   get:
-   *     tags:
-   *      - Action
-   *     description: Get all Actions
-   *     responses:
-   *       200:
-   *         description: Returns a mysterious string.
-   */
-  app.get("/", ActionController.index.bind(ActionController));
-
-  /**
-   * @openapi
-   * /Action/{id}:
-   *   get:
-   *     tags:
-   *      - Action
-   *     description: Get Action by id
-   *     parameters:
-   *        - name: id
-   *          description: Id to get by
-   *          in: path
-   *          required: true
-   *          schema:
-   *            type: integer
-   *     responses:
-   *       200:
-   *         description: Returns a mysterious string.
-   */
-  app.get("/:id", ActionController.show.bind(ActionController));
+module.exports = ({ ActionController }) => {
+  const app = Router();
 
   /**
    * @openapi
@@ -65,7 +34,6 @@ module.exports = ({ server, ActionController }) => {
    *         description: Returns a mysterious string.
    */
   app.post("/", ActionController.store.bind(ActionController));
-
 
   return app;
 };

@@ -9,7 +9,6 @@ const config = require("../config");
 const { ImportFiles } = require("../tools");
 
 // routes
-const Routes = require("../server/Router");
 const registerRoutes = ImportFiles(
   "src/app/**/infrastructure/*Route.*",
   (item) => asFunction(item).singleton(),
@@ -54,7 +53,6 @@ const container = createContainer();
 container
   .register({
     app: asClass(StartUp).singleton(),
-    router: asClass(Routes).singleton(),
     server: asClass(Server).singleton(),
     documentation: asClass(Documentation).singleton(),
     logger: asClass(Logger).singleton(),

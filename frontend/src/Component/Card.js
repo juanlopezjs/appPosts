@@ -65,17 +65,6 @@ const Card = ({
         </h5>
         <p className="card-text">{content}</p>
       </div>
-      <div className="card-body">
-        <span className="card-link text-muted">
-          <span className="fw-bold">{likes}</span> Me gusta
-        </span>
-        <span className="card-link text-muted">
-          <span className="fw-bold">{dislikes}</span> No me gusta
-        </span>
-        <span className="card-link text-muted">
-          <span className="fw-bold">{Comments?.length}</span> Comentarios
-        </span>
-      </div>
       <div className="card-footer">
         <div className="d-flex justify-content-evenly">
           <div className="p-2">
@@ -85,7 +74,8 @@ const Card = ({
               title="Me gusta"
               onClick={() => handleLike(true)}
             >
-              <i className="bi bi-hand-thumbs-up fs-5" />
+              <i className="bi bi-hand-thumbs-up fs-5 me-1" />
+              {likes}
             </button>
           </div>
           <div className="p-2">
@@ -95,7 +85,8 @@ const Card = ({
               title="No me gusta"
               onClick={() => handleLike(false)}
             >
-              <i className="bi bi-hand-thumbs-down fs-5" />
+              <i className="bi bi-hand-thumbs-down fs-5 me-1" />
+              {dislikes}
             </button>
           </div>
           <div className="p-2">
@@ -109,7 +100,8 @@ const Card = ({
                 }
               }}
             >
-              <i className="bi bi-chat fs-5" />
+              <i className="bi bi-chat fs-5 me-1" />
+              {Comments?.length}
             </Link>
           </div>
         </div>

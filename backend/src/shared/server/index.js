@@ -1,10 +1,12 @@
 const express = require("express");
 const compression = require("compression");
 const cors = require("cors");
+const httpLogger = require("../middlewares/HttpLogger");
+const errorHandler = require("../middlewares/ErrorHandler");
 
 class Server {
-  constructor({ config, documentation, logger }) {
-    this._config = config;
+  constructor(dependencies) {
+    this._config = dependencies.config;
     this._server = express();
     this._server.disable("x-powered-by");
     this._server.use(express.json());
@@ -15,16 +17,45 @@ class Server {
       })
     );
     this._server.use(compression());
-    documentation.setServer(this._server);
-    this._logger = logger;
+    dependencies.documentation.setServer(this._server);
+    this._logger = dependencies.logger;
+    this._dependencies = dependencies;
+    this.Fail = dependencies.response.Fail;
+
+    this.register();
   }
 
-  setRouter(router) {
-    this._server.use(router);
+  register() {
+    try {
+      const router = express.Router();
+      const apiRoute = express.Router();
+
+      router.use(httpLogger(this._logger));
+
+      Object.keys(this._dependencies)
+        .filter((dep) => dep.includes("Route"))
+        .forEach((route) =>
+          apiRoute.use(
+            `/${route.replace("Route", "")}`,
+            this._dependencies[`${route}`]
+          )
+        );
+
+      router.use("/api", apiRoute);
+
+      router.use((err, req, res, next) => {
+        errorHandler(err, res, this._logger, this.Fail);
+        next(err);
+      });
+
+      this._server.use(router);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  router() {
-    return express.Router();
+  getApp() {
+    return this._server;
   }
 
   start() {

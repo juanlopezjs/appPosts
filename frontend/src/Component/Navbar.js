@@ -13,13 +13,8 @@ const Navbar = () => {
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          <img
-            src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
-            alt=""
-            width="45"
-            height="40"
-          />
+        <Link className="navbar-brand h1" to="/">
+          App post
         </Link>
         {emailUser !== "" && (
           <>

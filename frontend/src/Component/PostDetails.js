@@ -20,9 +20,9 @@ const PostDetails = () => {
   const handleToBack = () => history.goBack();
   return (
     <>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center navbar-stick">
         <div className="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 col-xxl-7 mb-1">
-          <nav className="navbar sticky-top navbar-light bg-light border">
+          <nav className="navbar sticky-top navbar-light bg-light border shadow-sm">
             <div className="container-fluid">
               <button
                 type="button"

@@ -10,6 +10,7 @@ const services = {
 
 const env = {
   development: require("./development"),
+  test: require("./development"),
   production: require("./production"),
 };
 

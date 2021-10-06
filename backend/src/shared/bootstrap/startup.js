@@ -1,12 +1,10 @@
 class StartUp {
-  constructor({ server, router }) {
+  constructor({ server }) {
     this._server = server;
-    this._router = router;
   }
 
   async start() {
     await this._server.start();
-    this._router.register();
   }
 }
 
