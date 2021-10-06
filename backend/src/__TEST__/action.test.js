@@ -32,7 +32,7 @@ describe("Error post id not exist", () => {
 })
 
 //el usuario ya tiene accion registrada pero la cambia a false
-describe("Post action test", () => {
+describe("Existing action, the user changes the action to dislike", () => {
   it('It should response the POST method', async () => {
     const data = {
         "PostId": 1,
@@ -45,7 +45,7 @@ describe("Post action test", () => {
 })
 
 //el usuario ya tiene accion registrada pero la cambia a true
-describe("Post action test", () => {
+describe("Existing action, the user changes the action to like", () => {
   it('It should response the POST method', async () => {
     const data = {
         "PostId": 1,
@@ -57,8 +57,8 @@ describe("Post action test", () => {
   })
 })
 
-//El usuario registra la misma accion s eelimina registro
-describe("Post action delete record", () => {
+//El usuario registra la misma accion se elimina registro y reduce el contador de likes o dislikes
+describe("The user registers the same action, the register is deleted", () => {
   it('It should response the POST method', async () => {
     const data = {
         "PostId": 1,
