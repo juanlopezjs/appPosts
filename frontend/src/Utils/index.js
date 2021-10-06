@@ -1,3 +1,9 @@
+/**
+ * Function that formats the registration date
+ * @author Juan Manuel López
+ * @param {String} stringDate registration date
+ * @returns {String}
+ */
 const formatDateToString = (stringDate) => {
   const date = new Date(stringDate);
   const year = new Intl.DateTimeFormat("sp", {

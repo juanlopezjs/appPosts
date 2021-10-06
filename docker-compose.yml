@@ -1,0 +1,52 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:12.1
+        ports:
+          - "5432:5432"
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_DB=postDB
+        networks:
+          - some-net
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        depends_on:
+          - postgres
+        volumes:
+            - /app/node_modules
+            - ./backend:/app
+        ports:
+            - "5000:5000"
+        container_name: backend
+        environment:
+          - PGHOST=postgres
+          - PGDATABASE=postDB
+          - PGUSERNAME=postgres
+          - PGPASSWORD=
+          - PGPORT=5432
+        restart: on-failure
+        networks:
+          - some-net
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./frontend:/app
+        ports:
+            - "3000:3000"
+        environment:
+          - REACT_APP_API_URL=http://localhost:5000/api/
+        restart: on-failure
+        container_name: frontend
+        depends_on:
+          - backend
+        networks:
+          - some-net
+networks:
+    some-net:
+        driver: bridge

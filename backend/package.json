@@ -12,7 +12,8 @@
     "devMigrate": "cross-env NODE_ENV=development npx sequelize db:migrate",
     "testMigrate": "cross-env NODE_ENV=test npx sequelize db:migrate",
     "prodMigrate": "cross-env NODE_ENV=production npx sequelize db:migrate",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start:cc": "codecrumbs -d src -e src/start.js && start http://localhost:2018"
   },
   "keywords": [],
   "author": {
@@ -29,7 +30,6 @@
   "license": "ISC",
   "dependencies": {
     "awilix": "^4.3.3",
-    "awilix-express": "^4.0.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
+    "codecrumbs": "^1.7.3",
     "cross-env": "^7.0.3",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",

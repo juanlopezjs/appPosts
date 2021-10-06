@@ -11,6 +11,7 @@ class Server {
     this._server.disable("x-powered-by");
     this._server.use(express.json());
     this._server.use(cors());
+    this._server.options('*', cors());
     this._server.use(
       express.urlencoded({
         extended: true,
