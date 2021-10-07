@@ -18,10 +18,6 @@ export const postSlice = createSlice({
     setNewPage: (state, action) => {
       state.newPage = action.payload;
     },
-    resetList: (state) => {
-      state.page = 0;
-      state.list = [];
-    },
     setPostList: (state, action) => {
       const posts = state.list.concat(action.payload);
       state.list = posts.sort(
@@ -70,7 +66,6 @@ export const {
   setPage,
   setIsFetching,
   updatePost,
-  resetList,
   setNewPage,
   addComment
 } = postSlice.actions;

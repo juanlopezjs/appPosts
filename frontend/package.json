@@ -12,6 +12,8 @@
     "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
     "bootstrap-icons": "^1.5.0",
+    "D": "^1.0.0",
+    "msw": "^0.35.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

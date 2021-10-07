@@ -1,6 +1,6 @@
 # Aplicación de publicaciones tipo twitter
 
-Está aplicación nos permite crear, listar publicaciones, añadir comentarios a dichas publicaciones y agregar me gusta o no me gusta a las publicaciones.
+Esta aplicación nos permite crear, listar publicaciones, añadir comentarios a dichas publicaciones y agregar me gusta o no me gusta a las publicaciones.
 
 
 ## Empecemos 🚀
@@ -66,17 +66,21 @@ _Este comando ejecutará las pruebas unitarias que estan dentro de la carpeta ./
 npm run test
 ```
 
-_Este comando generará un informe detallando un porcentaje de usabilidad del codigó, dicho informe se genera en la carpeta coverage._
+_Este comando generará un informe detallando un porcentaje de usabilidad del código, dicho informe se genera en la carpeta coverage._
 ```
 npm run jest-coverage
 ```
 
 ### Frontend
 
-_Explica que verifican estas pruebas y por qué_
+_Para las pruebas del frontend se utilizó:_
+* [Mock Service Worker](https://mswjs.io/)
+* [Testing Library](https://testing-library.com/)
+
+_Para ejecutar las pruebas del frontend, dentro de la carpeta de este proyecto se ejecuta el siguiente comando:_ 
 
 ```
-Da un ejemplo
+npm test
 ```
 
 ## Construido con 🛠️
