@@ -4,8 +4,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import "@testing-library/jest-dom/extend-expect";
-import Posts from "../../../Container/Post/index";
 import { render, screen } from "./test-utils";
+
+// Mock
+import { posts } from "../../../__mocks__/post.mock";
+// Component
+import Posts from "../../../Container/Post/index";
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -14,18 +18,7 @@ const handlers = [
     res(
       ctx.json({
         data: {
-          items: [
-            {
-              id: 1,
-              name: "title test",
-              content: "content test",
-              likes: 0,
-              dislikes: 0,
-              userEmail: "test@hotmail.com",
-              createdAt: "2021-10-06T02:50:30.697Z",
-              Comments: []
-            }
-          ]
+          items: posts
         }
       }),
       ctx.delay(150)

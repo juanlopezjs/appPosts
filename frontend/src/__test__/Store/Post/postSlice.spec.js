@@ -8,20 +8,13 @@ import postReducer, {
   setIsFetching
 } from "../../../Store/Post/postSlice";
 
+// Mock
+import { posts, newPosts, updatedPost } from "../../../__mocks__/post.mock";
+import newComment from "../../../__mocks__/comment.mock";
+
 describe("post reducer", () => {
   const initialState = {
-    list: [
-      {
-        id: 1,
-        name: "title test",
-        content: "content test",
-        likes: 0,
-        dislikes: 0,
-        userEmail: "test@hotmail.com",
-        createdAt: "2021-10-06T02:50:30.697Z",
-        Comments: []
-      }
-    ],
+    list: posts,
     page: 0,
     newPage: null,
     isFetching: false
@@ -37,65 +30,19 @@ describe("post reducer", () => {
   });
 
   it("should handle set post list", () => {
-    const actual = postReducer(
-      initialState,
-      setPostList([
-        {
-          id: 2,
-          name: "title test",
-          content: "content test",
-          likes: 0,
-          dislikes: 0,
-          userEmail: "test@hotmail.com",
-          createdAt: "2021-10-06T02:50:30.697Z",
-          Comments: []
-        },
-        {
-          id: 3,
-          name: "title test",
-          content: "content test",
-          likes: 0,
-          dislikes: 0,
-          userEmail: "test@hotmail.com",
-          createdAt: "2021-10-06T02:50:30.697Z",
-          Comments: []
-        }
-      ])
-    );
+    const actual = postReducer(initialState, setPostList(newPosts));
 
     expect(actual.list.length).toEqual(3);
   });
 
   it("should handle update post", () => {
-    const actual = postReducer(
-      initialState,
-      updatePost({
-        id: 1,
-        name: "title test",
-        content: "content test",
-        likes: 2,
-        dislikes: 0,
-        userEmail: "test@hotmail.com",
-        createdAt: "2021-10-06T02:50:30.697Z",
-        Comments: []
-      })
-    );
+    const actual = postReducer(initialState, updatePost(updatedPost));
     const index = actual.list.findIndex((item) => item.id === 1);
     expect(actual.list[index].likes).toEqual(2);
   });
 
   it("should hanlde addComment", () => {
-    const actual = postReducer(
-      initialState,
-      addComment({
-        id: 1,
-        name: "titulo de comentario de prueba",
-        content: "mensaje de comenatrio de prueba",
-        userEmail: "test@hotmail.com",
-        PostId: 1,
-        createdAt: "2021-10-06T03:14:57.082Z"
-      })
-    );
+    const actual = postReducer(initialState, addComment(newComment));
 
     const index = actual.list.findIndex((item) => item.id === 1);
     expect(actual.list[index].Comments.length).toEqual(1);
