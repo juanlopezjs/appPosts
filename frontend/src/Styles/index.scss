@@ -6,6 +6,7 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
 }
 
 code {
@@ -34,4 +35,9 @@ footer{
   position: sticky;
   top: 3.6rem;
   z-index: 99;
+}
+
+.text_c {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

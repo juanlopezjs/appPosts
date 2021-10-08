@@ -31,7 +31,7 @@ const Card = ({
           <div className="p-2">
             <Avatar userEmail={userEmail} />
           </div>
-          <div className="p-2">
+          <div className="p-2 text_c">
             <p className="h6">
               <strong>{userEmail}</strong>
             </p>
